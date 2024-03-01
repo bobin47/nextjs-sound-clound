@@ -9,7 +9,6 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
@@ -17,6 +16,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import Link from 'next/link';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -100,7 +100,19 @@ export default function AppHeader() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose} sx={
+
+                {
+                    "> a": {
+                        color: "unset",
+                        textDecoration: "none"
+                    }
+                }}>
+                <Link href={"/profile"}>
+                    Profile
+                </Link>
+
+            </MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
@@ -187,11 +199,15 @@ export default function AppHeader() {
                             display: { xs: 'none', md: 'flex' },
                             gap: "15px",
                             alignItems: "center",
-                            cursor: "pointer"
+                            cursor: "pointer",
+                            "> a": {
+                                color: "unset",
+                                textDecoration: "none"
+                            }
                         }}>
-                            <span>Playlist</span>
-                            <span>Likes</span>
-                            <span>Upload</span>
+                            <Link href={"/playlist"}>Playlist</Link>
+                            <Link href={"/like"}>Likes</Link>
+                            <Link href={"/upload"}>Upload</Link>
                             <Avatar onClick={handleProfileMenuOpen}>HT</Avatar>
                         </Box>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
